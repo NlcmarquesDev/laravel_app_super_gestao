@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TesteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,22 +28,13 @@ Route::prefix('app')->group(function () {
     Route::get('/clients', function () {
         return 'Clients';
     });
-    Route::get('/suppliers', function () {
-        return 'Suppliers';
-    });
+    Route::get('/suppliers', [SupplierController::class, 'index'])->name('app.suppliers');
     Route::get('/products', function () {
         return 'Products';
     });
 });
 
-Route::get('/rota1', function () {
-    echo 'Rota 1';
-})->name('site.rota1');
-Route::get('/rota2', function () {
-    return redirect()->route('site.rota1');
-})->name('site.rota2');
-// Route::redirect('/rota2', '/rota1');
-
+Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
 
 //Rota de Fallback, ou seja de retorno para rederecionar melhor o usuario e nao ir para a pagina 404
 
